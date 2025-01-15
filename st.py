@@ -9,7 +9,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-# import cloudpickle
+import cloudpickle
 import  streamlit_vertical_slider  as svs
 import streamlit_toggle as sts
 
@@ -27,7 +27,7 @@ class GenerationPlaylist():
             mood_mapping_path (str, optional): _description_. Defaults to './mood_mapping.json'.
         """
         with open(pipeline_path, mode='rb') as file:
-            self.pipeline = joblib.load(file)
+            self.pipeline = cloudpickle.load(file)
 
         self.data_playlist = pd.read_csv(data_playlist_path, sep=',')
 
