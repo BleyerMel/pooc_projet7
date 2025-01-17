@@ -23,14 +23,31 @@ class GenerationPlaylist():
             data_playlist_path (str, optional): _description_. Defaults to './playlist_data.csv'.
             mood_mapping_path (str, optional): _description_. Defaults to './mood_mapping.json'.
         """
-        with open(pipeline_path, mode='rb') as file:
-            self.pipeline = cloudpickle.load(file)
+        try:
+            with open(pipeline_path, mode='rb') as file:
+                self.pipeline = cloudpickle.load(file)
+            st.write("Pipeline loaded successfully.")
+        except FileNotFoundError:
+            st.error(f"File not found: {pipeline_path}")
+        except Exception as e:
+            st.error(f"Error loading pipeline: {e}")
 
-        self.data_playlist = pd.read_csv(data_playlist_path, sep=',')
+        try:
+            self.data_playlist = pd.read_csv(data_playlist_path, sep=',')
+            st.write("Playlist data loaded successfully.")
+        except FileNotFoundError:
+            st.error(f"File not found: {data_playlist_path}")
+        except Exception as e:
+            st.error(f"Error loading playlist data: {e}")
 
-        with open(mood_mapping_path, 'r') as json_file:
-            self.mood_mapping = json.load(json_file)
-
+        try:
+            with open(mood_mapping_path, 'r') as json_file:
+                self.mood_mapping = json.load(json_file)
+            st.write("Mood mapping loaded successfully.")
+        except FileNotFoundError:
+            st.error(f"File not found: {mood_mapping_path}")
+        except Exception as e:
+            st.error(f"Error loading mood mapping: {e}")
     
     def predict_mood(self, input_data):
         """Predit le mood actuel en fonction de l'input donné
@@ -77,12 +94,13 @@ class GenerationPlaylist():
             _type_: _description_
         """
         mood = self.predict_mood(input_data)
-        print(mood)
+        st.write(f"Predicted mood: {mood}")
         result = self.playlist_selection(mood)
         return result
 
     
-GP = GenerationPlaylist()   
+# Initialisation de l'objet GenerationPlaylist
+GP = GenerationPlaylist()
 
 
 # Titre de l'application
