@@ -6,7 +6,7 @@ import json
 import plotly.express as px
 import matplotlib.pyplot as plt
 import numpy as np
-import cloudpickle
+import pickle
 
 
 
@@ -25,7 +25,7 @@ class GenerationPlaylist():
         """
         try:
             with open(pipeline_path, mode='rb') as file:
-                self.pipeline = cloudpickle.load(file)
+                self.pipeline = pickle.load(file)
             st.write("Pipeline loaded successfully.")
         except FileNotFoundError:
             st.error(f"File not found: {pipeline_path}")
