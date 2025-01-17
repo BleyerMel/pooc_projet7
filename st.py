@@ -6,7 +6,7 @@ import json
 import plotly.express as px
 import matplotlib.pyplot as plt
 import numpy as np
-import pickle
+import joblib
 
 
 
@@ -15,7 +15,7 @@ import pickle
 
 class GenerationPlaylist():
 
-    def __init__(self, pipeline_path='pipeline.pkl', data_playlist_path='playlist_data.csv', mood_mapping_path='mood_mapping.json' ):
+    def __init__(self, pipeline_path='pipeline.joblib', data_playlist_path='playlist_data.csv', mood_mapping_path='mood_mapping.json' ):
         """ Definir toutes les variables globales de la class
 
         Args:
@@ -25,7 +25,7 @@ class GenerationPlaylist():
         """
         try:
             with open(pipeline_path, mode='rb') as file:
-                self.pipeline = pickle.load(file)
+                self.pipeline = joblib.load(file)
             st.write("Pipeline loaded successfully.")
         except FileNotFoundError:
             st.error(f"File not found: {pipeline_path}")
