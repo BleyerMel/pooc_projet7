@@ -2,16 +2,13 @@
 # Import des bibliothèques
 import streamlit as st 
 import pandas as pd
-import joblib, json
+import json
 import plotly.express as px
 import matplotlib.pyplot as plt
 import numpy as np
-import tensorflow as tf
-from tensorflow.keras.models import load_model
-from sklearn.preprocessing import LabelEncoder, StandardScaler
 import cloudpickle
-import  streamlit_vertical_slider  as svs
-import streamlit_toggle as sts
+
+
 
 
 
