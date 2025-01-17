@@ -15,7 +15,7 @@ import joblib
 
 class GenerationPlaylist():
 
-    def __init__(self, pipeline_path='pipeline.joblib', data_playlist_path='playlist_data.csv', mood_mapping_path='mood_mapping.json' ):
+    def __init__(self, pipeline_path='./pipeline.joblib', data_playlist_path='./playlist_data.csv', mood_mapping_path='./mood_mapping.json' ):
         """ Definir toutes les variables globales de la class
 
         Args:
